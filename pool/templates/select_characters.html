@@ -1,7 +1,19 @@
 <h1>Select Characters</h1>
 
-<ul>
+<table>
+    <tr>
+        <th></th>
+        <th>Lives</th>
+        <th>Dies</th>
+    </tr>
+
 {% for character in character_list %}
-    <li>{{ character.name }}</li>
+    <tr>
+        <td>{{ character.name }}</td>
+
+        <td><input type="radio" name="{{ character.name }}" value="lives"></td>
+        <td><input type="radio" name="{{ character.name }}" value="dies"></td>
+
+    </tr>
 {% endfor %}
-</ul>
+</table>
