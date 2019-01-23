@@ -1,1 +1,7 @@
 <h1>Select Characters</h1>
+
+<ul>
+{% for character in character_list %}
+    <li>{{ character.name }}</li>
+{% endfor %}
+</ul>
