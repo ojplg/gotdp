@@ -1,5 +1,14 @@
 <h1>Select Characters</h1>
 
+<ul>
+{% for character in character_list %}
+    <li>{{ character.name }}</li>
+{% endfor %}
+</ul>
+
+
+
+<form action="/pool/select_characters" method="post">
 <table>
     <tr>
         <th></th>
@@ -7,13 +16,11 @@
         <th>Dies</th>
     </tr>
 
-{% for character in character_list %}
-    <tr>
-        <td>{{ character.name }}</td>
+{% csrf_token %}
+{{ form }}
 
-        <td><input type="radio" name="{{ character.name }}" value="lives"></td>
-        <td><input type="radio" name="{{ character.name }}" value="dies"></td>
-
-    </tr>
-{% endfor %}
 </table>
+
+<input type="submit" value="OK">
+
+</form>
