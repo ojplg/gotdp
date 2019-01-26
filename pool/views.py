@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Character
 
@@ -11,9 +11,19 @@ def index(request):
 
 def select_characters(request):
     if request.method == 'POST':
-        form = CharacterSelectsForm(request) 
+        form = CharacterSelectsForm(request.POST)
+        if form.is_valid():
+            print( "oh boy")
+            print( form.cleaned_data )
+            print( "oh boy 2" )
+        context = { 'form': form }
+        return HttpResponseRedirect('select_characters')
+         
     else :
         form = CharacterSelectsForm() 
+        context = { 'form': form }
+        return render(request,'select_characters.html',context) 
 
-    context = { 'form': form }
-    return render(request,'select_characters.html',context) 
+def selections_made(request):
+    context = {}
+    return render(request,'selections_made.html',context)
