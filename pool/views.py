@@ -1,9 +1,8 @@
 from django.shortcuts import render
-
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.models import User
 
 from .models import Character
-
 from .forms import CharacterSelectsForm, RegisterUserForm
 
 def index(request):
@@ -15,6 +14,10 @@ def register_user(request):
         if form.is_valid():
             print("registering!")
             print( form.cleaned_data )
+            user = User.objects.create_user(formcleaned_data['email'],form.cleaned_data['email'],form.cleaned_data['password'])
+            print("user!")
+            print(user)
+            user.save()
         return HttpResponseRedirect('select_characters')
     else :
         form = RegisterUserForm()
