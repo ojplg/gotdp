@@ -46,5 +46,5 @@ def selections_made(request):
 
 @login_required
 def profile(request):
-    context = {}
+    context = {'user':request.user}
     return render(request,'profile.html',context)
