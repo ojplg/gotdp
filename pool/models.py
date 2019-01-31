@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 class Character(models.Model):
@@ -15,3 +16,4 @@ class Selection(models.Model):
 
 class Selections(models.Model):
     picks = models.ManyToManyField(Selection, verbose_name="list of selections")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

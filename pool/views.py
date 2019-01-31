@@ -25,6 +25,7 @@ def register_user(request):
         context = { 'form':form }
         return render(request,'register_user.html',context)
 
+@login_required
 def select_characters(request):
     if request.method == 'POST':
         form = CharacterSelectsForm(request.POST)
