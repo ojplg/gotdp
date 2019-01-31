@@ -4,10 +4,22 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Character
 
-from .forms import CharacterSelectsForm
+from .forms import CharacterSelectsForm, RegisterUserForm
 
 def index(request):
     return HttpResponse("GOT Death Pool Index")
+
+def register_user(request):
+    if request.method == 'POST':
+        form = RegisterUserForm(request.POST)
+        if form.is_valid():
+            print("registering!")
+            print( form.cleaned_data )
+        return HttpResponseRedirect('select_characters')
+    else :
+        form = RegisterUserForm()
+        context = { 'form':form }
+        return render(request,'register_user.html',context)
 
 def select_characters(request):
     if request.method == 'POST':
@@ -27,3 +39,5 @@ def select_characters(request):
 def selections_made(request):
     context = {}
     return render(request,'selections_made.html',context)
+
+

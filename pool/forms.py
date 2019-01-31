@@ -11,4 +11,6 @@ class CharacterSelectsForm(forms.Form):
         for c in Character.objects.order_by('name'):
             self.fields[c.name] = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
-    
+class RegisterUserForm(forms.Form):
+    email = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100)
