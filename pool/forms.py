@@ -12,5 +12,5 @@ class CharacterSelectsForm(forms.Form):
             self.fields[c.name] = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
 class RegisterUserForm(forms.Form):
-    email = forms.CharField(max_length=100)
-    password = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)

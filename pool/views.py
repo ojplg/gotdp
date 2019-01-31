@@ -14,7 +14,7 @@ def register_user(request):
         if form.is_valid():
             print("registering!")
             print( form.cleaned_data )
-            user = User.objects.create_user(formcleaned_data['email'],form.cleaned_data['email'],form.cleaned_data['password'])
+            user = User.objects.create_user(form.cleaned_data['email'],form.cleaned_data['email'],form.cleaned_data['password'])
             print("user!")
             print(user)
             user.save()
