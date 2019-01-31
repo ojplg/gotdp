@@ -6,7 +6,7 @@ from .models import Character
 from .forms import CharacterSelectsForm, RegisterUserForm
 
 def index(request):
-    return HttpResponse("GOT Death Pool Index")
+    return render(request,'index.html',{})
 
 def register_user(request):
     if request.method == 'POST':
