@@ -34,9 +34,6 @@ def select_characters(request):
         form = CharacterSelectsForm(request.POST)
         if form.is_valid():
             post_data = form.cleaned_data
-            print( "oh boy")
-            print( post_data )
-            print( "oh boy 2" )
             picks = []
             for k, v in post_data.items():
                 character = Character.objects.get(name=k)
