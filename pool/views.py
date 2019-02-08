@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from .models import Character
+from .models import CustomUser
 from .forms import CharacterSelectsForm, RegisterUserForm
 
 def index(request):
@@ -15,7 +16,7 @@ def register_user(request):
         if form.is_valid():
             print("registering!")
             print( form.cleaned_data )
-            user = User.objects.create_user(form.cleaned_data['email'],form.cleaned_data['email'],form.cleaned_data['password'])
+            user = CustomUser.objects.create_user(form.cleaned_data['email'],form.cleaned_data['email'],form.cleaned_data['password'])
             print("user!")
             print(user)
             user.save()
@@ -33,9 +34,8 @@ def select_characters(request):
             print( "oh boy")
             print( form.cleaned_data )
             print( "oh boy 2" )
-        context = { 'form': form }
-        return HttpResponseRedirect('select_characters')
-         
+            context = {'user':request.user}
+            return render(request,'profile.html',context)
     else :
         form = CharacterSelectsForm() 
         context = { 'form': form }
