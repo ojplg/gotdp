@@ -65,5 +65,13 @@ def selections_made(request):
 
 @login_required
 def profile(request):
-    context = {'user':request.user}
+    lives = []
+    dies = []
+    try:
+        selections = Selections.objects.get(user=request.user)
+        lives = selections.picks_to_live()
+        dies = selections.picks_to_die()
+    except Selections.DoesNotExist:
+        print("User " + str(request.user) + " has no picks")
+    context = {'user':request.user, 'lives':lives, 'dies':dies}
     return render(request,'profile.html',context)

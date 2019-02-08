@@ -24,3 +24,17 @@ class Selection(models.Model):
 class Selections(models.Model):
     picks = models.ManyToManyField(Selection, verbose_name="list of selections")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def picks_to_live(self):
+        lives = []
+        for pick in self.picks.all():
+            if ( pick.outcome == 'L' ):
+                lives.append(pick.character)
+        return lives
+            
+    def picks_to_die(self):
+        dies = []
+        for pick in self.picks.all():
+            if ( pick.outcome == 'D' ):
+                dies.append(pick.character)
+        return dies
