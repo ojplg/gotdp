@@ -8,10 +8,19 @@
 
 <h3>Picked to live</h3>
 
-{{ lives }}
+<ul>
+{% for live in lives %}
+    <li>{{ live.name }}</li>
+{% endfor %}
+</ul>
 
 <br/>
 
 <h3>Picked to die</h3>
 
-{{ dies }}
+<ul>
+{% for c in dies %}
+    <li>{{ c.name }}</li>
+{% endfor %}
+</ul>
+

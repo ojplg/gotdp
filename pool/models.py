@@ -11,6 +11,9 @@ class Character(models.Model):
     def __str__(self):
         return 'Character: ' + self.name
 
+    def __lt__(self, other):
+        return self.name.__lt__(other.name)
+
 class Selection(models.Model):
     OUTCOMES = (
         ('L','Lives'),
@@ -21,6 +24,9 @@ class Selection(models.Model):
     def __str__(self):
         return "Selection " + self.character.name + " should " + self.outcome
 
+    def __lt__(self, other):
+        return self.character.__lt__(other.character)
+
 class Selections(models.Model):
     picks = models.ManyToManyField(Selection, verbose_name="list of selections")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -30,11 +36,11 @@ class Selections(models.Model):
         for pick in self.picks.all():
             if ( pick.outcome == 'L' ):
                 lives.append(pick.character)
-        return lives
+        return sorted(lives)
             
     def picks_to_die(self):
         dies = []
         for pick in self.picks.all():
             if ( pick.outcome == 'D' ):
                 dies.append(pick.character)
-        return dies
+        return sorted(dies)
