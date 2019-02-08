@@ -1,5 +1,9 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.conf import settings
+
+class CustomUser(AbstractUser):
+    pass
 
 class Character(models.Model):
     name = models.CharField(max_length=500)
@@ -16,4 +20,4 @@ class Selection(models.Model):
 
 class Selections(models.Model):
     picks = models.ManyToManyField(Selection, verbose_name="list of selections")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

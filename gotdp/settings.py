@@ -124,3 +124,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/pool/profile'
+
+AUTH_USER_MODEL = 'pool.CustomUser'
