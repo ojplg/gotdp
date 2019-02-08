@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Character
 from .models import CustomUser
+from .models import Selection
+from .models import Selections
 from .forms import CharacterSelectsForm, RegisterUserForm
 
 def index(request):
@@ -31,9 +33,25 @@ def select_characters(request):
     if request.method == 'POST':
         form = CharacterSelectsForm(request.POST)
         if form.is_valid():
+            post_data = form.cleaned_data
             print( "oh boy")
-            print( form.cleaned_data )
+            print( post_data )
             print( "oh boy 2" )
+            picks = []
+            for k, v in post_data.items():
+                character = Character.objects.get(name=k)
+                print(" PREDICTION FOR " + str(character) + " is " + v)
+                selection = Selection()
+                selection.character = character
+                selection.outcome = v[0]
+                selection.save()
+                print( " SELECTION " + str(selection))
+                picks.append(selection)
+            selections = Selections()
+            selections.user = request.user
+            selections.save()
+            selections.picks.set(picks)
+            selections.save()
             context = {'user':request.user}
             return render(request,'profile.html',context)
     else :
