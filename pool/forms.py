@@ -9,13 +9,6 @@ class CharacterSelectsForm(forms.Form):
         for c in Character.objects.order_by('name'):
             self.fields[c.name] = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=False)
 
-    def populate_selections(self,selections):
-        for name in self.fields:
-            prediction = selections.pick_by_name(name)
-            print(" FORM PREDICTION FOR " + name + " was " + prediction)
-            
-        
-
 class RegisterUserForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
