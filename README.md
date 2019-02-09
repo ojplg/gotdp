@@ -44,3 +44,7 @@ predictions about which characters will live and which will die.
 * Jorah Mormont 
 * Varys
 * Gendry
+* Beric Dondarrion
+* Tormund Giantsbane
+* Lyanna Mormont
+* Qyburn
