@@ -31,7 +31,7 @@ predictions about which characters will live and which will die.
 * Jamie Lannister
 * Cersei Lannister
 * Gilly
-* Sam Tarley
+* Samwell Tarly
 * Theon Greyjoy
 * Euron Greyjoy
 * Yara Greyjoy
@@ -48,3 +48,5 @@ predictions about which characters will live and which will die.
 * Tormund Giantsbane
 * Lyanna Mormont
 * Qyburn
+* Eddison Tollett
+* Meera Reed
