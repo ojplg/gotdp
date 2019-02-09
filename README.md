@@ -19,3 +19,28 @@ predictions about which characters will live and which will die.
 * Figure out why capitalization of names on form is fucked up
 * Rules for how the pool is settled
 
+# Characters
+
+* Brienne of Tarth
+* Bronn of the Blackwater
+* Bran Stark
+* Arya Stark
+* Sansa Stark
+* Jon Snow
+* Tyrion Lannister
+* Jamie Lannister
+* Cersei Lannister
+* Gilly
+* Sam Tarley
+* Theon Greyjoy
+* Euron Greyjoy
+* Yara Greyjoy
+* Melisandre
+* Davos Seaworth
+* Grey Worm
+* Missandei
+* Sandor Clegane (The Hound)
+* Daenerys Stormborn of the House Targaryen, the First of her Name, Queen of the Andals and the First Men and Protector of the Realm, Khaleesi of the Great Grass Sea, Breaker of Chains, and Mother of Dragons 
+* Jorah Mormont 
+* Varys
+* Gendry
