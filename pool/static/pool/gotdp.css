@@ -1,9 +1,15 @@
 
 body {
     background-size: cover;
+    background-color: #333333;
     font-size: 20px;
     font-family: "Alegreya", serif;
     color: grey;
+}
+
+div.content {
+    width: 80%;
+    margin: 0 auto;
 }
 
 

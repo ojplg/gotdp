@@ -19,6 +19,8 @@ predictions about which characters will live and which will die.
 * Figure out why capitalization of names on form is fucked up
 * Rules for how the pool is settled
 * Fix many-to-many relationship between selection and selections: should by one-to-many
+* Score keeping
+* Coupling predictions
 
 # Characters
 
@@ -53,3 +55,4 @@ predictions about which characters will live and which will die.
 * Meera Reed
 * Robin Arryn
 * Yohn Royce
+* Podrick Payne
