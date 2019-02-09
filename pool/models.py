@@ -63,3 +63,22 @@ class Selections(models.Model):
         for pick in self.picks.all():
             data[pick.character.name]=Selection.decode_outcome(pick.outcome)
         return data
+
+    def update_picks(self, data):
+        for name, prediction in data.items():
+            new_name = True
+            for pick in self.picks.all():
+                if ( pick.character.name == name ):
+                    pick.outcome = prediction[0]
+                    new_name = False
+            if ( new_name ):
+                selection = Selection()
+                character = Character.objects.get(name=name)
+                selection.character = character
+                selection.outcome = prediction[0]
+                selection.save()
+                self.picks.add(selection)
+
+
+            
+        

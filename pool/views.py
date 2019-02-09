@@ -33,21 +33,15 @@ def select_characters(request):
     if request.method == 'POST':
         form = CharacterSelectsForm(request.POST)
         if form.is_valid():
-            post_data = form.cleaned_data
-            picks = []
-            for k, v in post_data.items():
-                character = Character.objects.get(name=k)
-                print(" PREDICTION FOR " + str(character) + " is " + v)
-                selection = Selection()
-                selection.character = character
-                selection.outcome = v[0]
-                selection.save()
-                print( " SELECTION " + str(selection))
-                picks.append(selection)
             selections = Selections()
+            try:
+                selections = Selections.objects.get(user=request.user)
+            except Selections.DoesNotExist:
+                print("No selections yet")
+            post_data = form.cleaned_data
             selections.user = request.user
             selections.save()
-            selections.picks.set(picks)
+            selections.update_picks(post_data)
             selections.save()
             context = {'user':request.user}
             return render(request,'profile.html',context)
