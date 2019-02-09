@@ -27,6 +27,13 @@ class Selection(models.Model):
     def __lt__(self, other):
         return self.character.__lt__(other.character)
 
+    def decode_outcome(code):
+        if ( code == 'L' ):
+            return 'Lives'
+        if ( code == 'D' ):
+            return 'Dies'
+        raise Exception("Unrecognized code " + code)
+
 class Selections(models.Model):
     picks = models.ManyToManyField(Selection, verbose_name="list of selections")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -44,3 +51,15 @@ class Selections(models.Model):
             if ( pick.outcome == 'D' ):
                 dies.append(pick.character)
         return sorted(dies)
+
+    def pick_by_name(self, name):
+        for pick in self.picks.all():
+            if ( pick.character.name == name ):
+                return pick.outcome
+        return None
+
+    def picks_dictionary(self):
+        data = {}
+        for pick in self.picks.all():
+            data[pick.character.name]=Selection.decode_outcome(pick.outcome)
+        return data

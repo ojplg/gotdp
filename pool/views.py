@@ -52,7 +52,13 @@ def select_characters(request):
             context = {'user':request.user}
             return render(request,'profile.html',context)
     else :
-        form = CharacterSelectsForm() 
+        data = {}
+        try:
+            selections = Selections.objects.get(user=request.user)
+            data = selections.picks_dictionary()
+        except Selections.DoesNotExist:
+            print("User " + str(request.user) + " has no picks")
+        form = CharacterSelectsForm(data) 
         context = { 'form': form }
         return render(request,'select_characters.html',context) 
 
