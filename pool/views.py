@@ -55,10 +55,6 @@ def select_characters(request):
         context = { 'form': form }
         return render(request,'select_characters.html',context) 
 
-def selections_made(request):
-    context = {}
-    return render(request,'selections_made.html',context)
-
 @login_required
 def profile(request):
     lives = []
