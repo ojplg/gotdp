@@ -18,6 +18,7 @@ predictions about which characters will live and which will die.
 * Better selection form
 * Figure out why capitalization of names on form is fucked up
 * Rules for how the pool is settled
+* Fix many-to-many relationship between selection and selections: should by one-to-many
 
 # Characters
 
@@ -50,3 +51,5 @@ predictions about which characters will live and which will die.
 * Qyburn
 * Eddison Tollett
 * Meera Reed
+* Robin Arryn
+* Yohn Royce
