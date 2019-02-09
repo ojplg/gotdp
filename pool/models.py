@@ -38,6 +38,9 @@ class Selections(models.Model):
     picks = models.ManyToManyField(Selection, verbose_name="list of selections")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "Selections: " + str(user) + " are " + str(picks)    
+    
     def picks_to_live(self):
         lives = []
         for pick in self.picks.all():
@@ -71,6 +74,8 @@ class Selections(models.Model):
                 if ( pick.character.name == name ):
                     pick.outcome = prediction[0]
                     new_name = False
+                    print("Resetting value for " + name + " to " + prediction)
+                    pick.save()
             if ( new_name ):
                 selection = Selection()
                 character = Character.objects.get(name=name)

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -42,9 +42,8 @@ def select_characters(request):
             selections.user = request.user
             selections.save()
             selections.update_picks(post_data)
-            selections.save()
             context = {'user':request.user}
-            return render(request,'profile.html',context)
+            return redirect('profile')
     else :
         data = {}
         try:
