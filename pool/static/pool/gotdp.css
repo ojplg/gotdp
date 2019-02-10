@@ -12,4 +12,29 @@ div.content {
     margin: 0 auto;
 }
 
+div.hometitle {
+    float: left;
+}
 
+div.homelogin {
+    float: right;
+    font-weight: bold;
+}
+
+div.hometop {
+    clear: both;
+}
+
+div.homebottom {
+    position: absolute;
+    bottom: 25px;
+    color: pink;
+}
+
+a:link {
+    color: red;
+}
+
+a:visited {
+    color: yellow;
+}

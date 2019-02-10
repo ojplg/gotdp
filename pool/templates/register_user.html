@@ -1,4 +1,23 @@
-<h4>Register User</h4>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h4>Register to participate in the pool.</h4>
+
+<hr>
+
+<h4>Disclaimers</h4>
+
+<ul>
+    <li>Spoilers. Look, this is a pool for predicting who will or will not live through Season 8 of Game of Thrones. If you are just watching Season 3, or have only read the books, or whatever, get out of here. Yes, this site will contain information about who is alive and dead.</li>
+    <li>No https. Yep. I am not asking for your credit card. This is not some high security site. Obviously, DO NOT REUSE PASSWORDS FROM OTHER SITES. Seriously, don't do that ever, but really don't do it on this hobby site without https.</li>
+    <li>Crappy programming. I am learning Python. I am learning Django. I did this as a learning exercise. Don't expect too much.</li>
+    <li>Alpha Software. I might choose to just delete everything from the DB at any point. If you sweated over your picks, well, write 'em down or something, so you can re-enter them.</li>
+    <li>If you find a bug, just let me know. Or better yet, <a href="https://github.com/ojplg/gotdp">fix it</a> and I will pull your patch.</li>
+</ul>
+
+<hr>
 
 <form action="/pool/register_user" method="post">
 
@@ -9,3 +28,5 @@
     <input type="submit" value="Register">
 
 </form>
+
+{% endblock %}
