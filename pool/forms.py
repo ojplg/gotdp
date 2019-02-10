@@ -7,7 +7,7 @@ class CharacterSelectsForm(forms.Form):
         super(CharacterSelectsForm, self).__init__(*args, **kwargs)
         CHOICES = (('Lives','Lives'),('Dies','Dies'))
         for c in Character.objects.order_by('name'):
-            self.fields[c.name] = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=False)
+            self.fields[c.name] = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=False, label=c.name)
 
 class RegisterUserForm(forms.Form):
     email = forms.EmailField()

@@ -15,7 +15,6 @@ predictions about which characters will live and which will die.
 * CSS for all the pages
 * Home page layout improvements
 * Better selection form
-* Figure out why capitalization of names on form is fucked up
 * Rules for how the pool is settled
 * Score keeping
 * Coupling predictions
