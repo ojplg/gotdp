@@ -9,7 +9,6 @@ predictions about which characters will live and which will die.
 
 # TODO
 
-* Figure out how to make html containers and includes
 * Navigation for the pages
 * Add a page that shows the voting totals so far
 * Add all the characters
@@ -18,7 +17,6 @@ predictions about which characters will live and which will die.
 * Better selection form
 * Figure out why capitalization of names on form is fucked up
 * Rules for how the pool is settled
-* Fix many-to-many relationship between selection and selections: should by one-to-many
 * Score keeping
 * Coupling predictions
 

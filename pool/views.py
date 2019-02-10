@@ -38,9 +38,9 @@ def select_characters(request):
                 selections = Selections.objects.get(user=request.user)
             except Selections.DoesNotExist:
                 print("No selections yet")
+                selections.user = request.user
+                selections.save()
             post_data = form.cleaned_data
-            selections.user = request.user
-            selections.save()
             selections.update_picks(post_data)
             context = {'user':request.user}
             return redirect('profile')
