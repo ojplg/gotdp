@@ -10,14 +10,13 @@ predictions about which characters will live and which will die.
 # TODO
 
 * Navigation for the pages
-* Add a page that shows the voting totals so far
 * Add all the characters
-* CSS for all the pages
-* Home page layout improvements
 * Better selection form
-* Rules for how the pool is settled
-* Score keeping
-* Coupling predictions
+* Pages
+  * Rules
+  * Scoreboard
+  * Total predictions
+* Improve design/css
 
 # Characters
 
