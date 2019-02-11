@@ -99,3 +99,6 @@ def scoreboard(request):
         scores[selections.user.email] = selections.compute_score(characters)
     context = { 'scores':scores }
     return render(request,'scoreboard.html',context)
+
+def rules_disclaimers(request):
+    return render(request,'rules_disclaimers.html',{})
