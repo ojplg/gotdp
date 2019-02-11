@@ -32,6 +32,19 @@ div.homebottom {
     color: pink;
 }
 
+div.navigation_items {
+}
+
+div.navigation_login {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+div.navigation_end {
+    clear: left;
+}
+
 a:link {
     color: red;
 }
