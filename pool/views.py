@@ -75,6 +75,9 @@ def summary(request):
     allSelections = Selection.objects.all()
     deadCount = Counter()
     liveCount = Counter()
+    for character in characters:
+        deadCount[character] = 0
+        liveCount[character] = 0
     for selection in allSelections:
         if selection.outcome == 'L' :
             liveCount[selection.character] += 1

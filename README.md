@@ -15,7 +15,7 @@ predictions about which characters will live and which will die.
 * Pages
   * Rules
   * Scoreboard
-  * Total predictions
+* Summary page has percentage chance of living
 * Improve design/css
 
 # Characters
