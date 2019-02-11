@@ -11,22 +11,29 @@
 
 <br/>
 
-<h3>Picked to live</h3>
+<div>
 
-<ul>
-{% for live in lives %}
-    <li>{{ live.name }}</li>
-{% endfor %}
-</ul>
+    <div style="width: 33%; float: left;">
+        <p>Lives</p>
+        {% for c in lives %}
+            {{ c.name }}<br/>
+        {% endfor %}
+    </div>
 
-<br/>
+    <div style="width: 33%; float: left;">
+        <p>Dies</p>
+        {% for c in dies %}
+            {{ c.name }}<br/>
+        {% endfor %}
+    </div>
 
-<h3>Picked to die</h3>
+    <div style="width: 33%; float: left;">
+        <p>No prediction</p>
+        {% for c in unselected %}
+            {{ c.name }}<br/>
+        {% endfor %}
+    </div>
 
-<ul>
-{% for c in dies %}
-    <li>{{ c.name }}</li>
-{% endfor %}
-</ul>
+</div>
 
 {% endblock %}

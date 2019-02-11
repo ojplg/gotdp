@@ -59,15 +59,11 @@ def select_characters(request):
 
 @login_required
 def profile(request):
-    lives = []
-    dies = []
-    try:
-        selections = Selections.objects.get(user=request.user)
-        lives = selections.picks_to_live()
-        dies = selections.picks_to_die()
-    except Selections.DoesNotExist:
-        print("User " + str(request.user) + " has no picks")
-    context = {'user':request.user, 'lives':lives, 'dies':dies}
+    selections = Selections.load_by_user(request.user)
+    context = {'user':request.user, 
+               'lives':selections.picks_to_live(), 
+               'dies':selections.picks_to_die(),
+               'unselected': selections.unselected()}
     return render(request,'profile.html',context)
 
 def summary(request):

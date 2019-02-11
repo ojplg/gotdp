@@ -49,6 +49,16 @@ class Selections(models.Model):
             data[pick.character.name]=Selection.decode_outcome(pick.outcome)
         return data
 
+    def unselected(self):
+        missing = []
+        characters = Character.objects.all()
+        selections = self.picks()
+        selected_characters = map ( lambda sel: sel.character , selections )
+        for character in characters:
+            if (character not in selected_characters):
+                missing.append(character)
+        return missing
+            
     def update_picks(self, data):
         for name, prediction in data.items():
             new_name = True
@@ -66,6 +76,13 @@ class Selections(models.Model):
                 selection.selections = self
                 selection.save()
  
+    def load_by_user(user):
+        try:
+            return Selections.objects.get(user=user)
+        except DoesNotExist:
+            selections = Selections()
+            selections.user = user
+            return selections
 
 class Selection(models.Model):
     OUTCOMES = (
