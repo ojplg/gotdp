@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+from collections import Counter
+
 from .models import Character
 from .models import CustomUser
 from .models import Selection
@@ -67,3 +69,20 @@ def profile(request):
         print("User " + str(request.user) + " has no picks")
     context = {'user':request.user, 'lives':lives, 'dies':dies}
     return render(request,'profile.html',context)
+
+def summary(request):
+    characters = Character.objects.all()
+    allSelections = Selection.objects.all()
+    deadCount = Counter()
+    liveCount = Counter()
+    for selection in allSelections:
+        if selection.outcome == 'L' :
+            liveCount[selection.character] += 1
+        if selection.outcome == 'D' :
+            deadCount[selection.character] += 1
+    context = {
+        'characters':characters,
+        'liveCount': liveCount,
+        'deadCount': deadCount
+    }
+    return render(request,'summary.html',context)

@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+
+{% load pool_filters %}
+
+{% block content %}
+
+<h4>Summary</h4>
+
+<table>
+
+    <thead>
+        <tr>
+            <th></th>
+            <th>Lives</th>
+            <th>Dies</th>
+        </tr> 
+    </thead>
+
+    {% for character in characters %}
+        <tr>
+            <td>{{ character.name }}</td>
+            <td>{{ liveCount|get_item:character }}</td>
+            <td>{{ deadCount|get_item:character }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
