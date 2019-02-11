@@ -18,7 +18,6 @@ predictions about which characters will live and which will die.
 * Couples selection
 * Summary page has percentage chance of living
 * Improve design/css
-* Logout/pages update appropriately based on login status
 
 # Characters
 

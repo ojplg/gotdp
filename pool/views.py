@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -65,6 +66,10 @@ def profile(request):
                'dies':selections.picks_to_die(),
                'unselected': selections.unselected()}
     return render(request,'profile.html',context)
+
+def do_logout(request):
+    logout(request)
+    return render(request,'index.html',{})
 
 def summary(request):
     characters = Character.objects.all()

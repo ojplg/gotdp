@@ -13,14 +13,24 @@
 </div>
 
 <div class="homeright">
-    <a href="accounts/login">Login</a>
+    
+    {% if user.is_authenticated %}
+
+        <a href="logout">Logout</a>
+
+    {% else %}
+
+        <a href="accounts/login">Login</a>
+        <br/>
+        <a href="{% url 'register_user' %}">Register</a>
+
+    {% endif %}
+    
     <br/>
-    <a href="{% url 'register_user' %}">Register</a>
-    <br/>
-    &dagger;
     <br/>
     <a href="{% url 'summary' %}">Summary</a>
     <br/>
+
 </div>
 
 <div class="homebottom">

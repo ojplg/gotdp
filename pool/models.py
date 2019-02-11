@@ -54,7 +54,6 @@ class Selections(models.Model):
         characters = Character.objects.all()
         selections = self.picks()
         selected_characters = list ( map ( lambda sel: sel.character , selections ))
-        print(" selected characters " + str(len(selected_characters)))
         for character in characters:
             if (character not in selected_characters):
                 missing.append(character)
