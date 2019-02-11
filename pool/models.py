@@ -53,11 +53,13 @@ class Selections(models.Model):
         missing = []
         characters = Character.objects.all()
         selections = self.picks()
-        selected_characters = map ( lambda sel: sel.character , selections )
+        selected_characters = list ( map ( lambda sel: sel.character , selections ))
+        print(" selected characters " + str(len(selected_characters)))
         for character in characters:
             if (character not in selected_characters):
                 missing.append(character)
-        return missing
+        return sorted(missing)
+
             
     def update_picks(self, data):
         for name, prediction in data.items():
