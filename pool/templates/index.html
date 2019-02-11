@@ -9,12 +9,16 @@
 <body background="{% static "pool/arya_walder.jpeg" %}">
 
 <div class="hometop">
-    <div class="hometitle"><h1>Game of Thrones Death Pool</h1></div>
-    <div class="homelogin">
-        <a href="accounts/login">Login</a>
-        &nbsp;&dagger;&nbsp;
-        <a href="{% url 'register_user' %}">Register</a>
-    </div>
+    <h1>Game of Thrones Death Pool</h1>
+</div>
+
+<div class="homeright">
+    <a href="accounts/login">Login</a>
+    <br/>
+    <a href="{% url 'register_user' %}">Register</a>
+    <br/>
+    <a href="{% url 'summary' %}">Summary</a>
+    <br/>
 </div>
 
 <div class="homebottom">

@@ -16,7 +16,8 @@ div.hometitle {
     float: left;
 }
 
-div.homelogin {
+div.homeright {
+    width: 15%;
     float: right;
     font-weight: bold;
 }
