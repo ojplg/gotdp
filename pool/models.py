@@ -69,13 +69,14 @@ class Selections(models.Model):
                     print("Resetting value for " + name + " to " + prediction)
                     pick.save()
             if ( new_name ):
-                selection = Selection()
-                character = Character.objects.get(name=name)
-                selection.character = character
-                selection.outcome = prediction[0]
-                selection.selections = self
-                selection.save()
- 
+                if( prediction ):
+                    selection = Selection()
+                    character = Character.objects.get(name=name)
+                    selection.character = character
+                    selection.outcome = prediction[0]
+                    selection.selections = self
+                    selection.save()
+         
     def load_by_user(user):
         try:
             return Selections.objects.get(user=user)
