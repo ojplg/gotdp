@@ -22,10 +22,6 @@ div.homeright {
     font-weight: bold;
 }
 
-div.hometop {
-    clear: both;
-}
-
 div.homebottom {
     position: absolute;
     bottom: 25px;

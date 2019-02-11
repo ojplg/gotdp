@@ -5,7 +5,9 @@
 
 {% block content %}
 
-<h4>Summary</h4>
+<h4>Totals</h4>
+
+<p>Shows the prediction totals for each character.</p>
 
 <table>
 
@@ -14,6 +16,7 @@
             <th></th>
             <th>Lives</th>
             <th>Dies</th>
+            <th>Chance of making it</th>
         </tr> 
     </thead>
 
@@ -22,6 +25,7 @@
             <td>{{ character.name }}</td>
             <td>{{ liveCount|get_item:character }}</td>
             <td>{{ deadCount|get_item:character }}</td>
+            <td>{{ livePercentage|get_item:character }}</td>
         </tr>
     {% endfor %}
 

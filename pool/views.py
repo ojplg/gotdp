@@ -84,10 +84,20 @@ def summary(request):
             liveCount[selection.character] += 1
         if selection.outcome == 'D' :
             deadCount[selection.character] += 1
+    livePercentage = {}
+    for character in characters:
+        liveVotes = liveCount[character]
+        deadVotes = deadCount[character]
+        total = liveVotes + deadVotes
+        if total == 0:
+            livePercentage[character] = 0
+        else: 
+            livePercentage[character] = 100 * liveVotes / ( liveVotes + deadVotes )
     context = {
         'characters':characters,
         'liveCount': liveCount,
-        'deadCount': deadCount
+        'deadCount': deadCount,
+        'livePercentage':livePercentage
     }
     return render(request,'summary.html',context)
 

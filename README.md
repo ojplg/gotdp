@@ -12,7 +12,6 @@ predictions about which characters will live and which will die.
 * Add all the characters
 * Better selection form
 * Couples selection
-* Summary page has percentage chance of living
 * Improve design/css
 
 # Characters
