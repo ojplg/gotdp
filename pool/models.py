@@ -90,6 +90,17 @@ class Selections(models.Model):
             selections.user = user
             return selections
 
+    def compute_score(self,characters):
+        score = 0
+        for selection in self.picks():
+            for character in characters:
+                if( character == selection.character ):
+                    if( selection.outcome == character.status ):
+                        score+=1
+                    else:
+                        score-=1
+        return score
+
 class Selection(models.Model):
     OUTCOMES = (
         ('L','Lives'),

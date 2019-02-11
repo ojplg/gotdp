@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+
+{% load pool_filters %}
+
+{% block content %}
+
+<h4>Scoreboard</h4>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Competitor</th>
+            <th>Score</th>
+        </tr> 
+    </thead>
+
+    {% for email in scores.keys %}
+        <tr>
+            <td>{{ email }}</td>
+            <td>{{ scores|get_item:email }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

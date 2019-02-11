@@ -90,3 +90,12 @@ def summary(request):
         'deadCount': deadCount
     }
     return render(request,'summary.html',context)
+
+def scoreboard(request):
+    allSelections = Selections.objects.all()
+    characters = Character.objects.all()
+    scores = {}
+    for selections in allSelections:
+        scores[selections.user.email] = selections.compute_score(characters)
+    context = { 'scores':scores }
+    return render(request,'scoreboard.html',context)

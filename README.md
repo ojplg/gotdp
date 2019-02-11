@@ -14,7 +14,6 @@ predictions about which characters will live and which will die.
 * Better selection form
 * Pages
   * Rules
-  * Scoreboard
 * Couples selection
 * Summary page has percentage chance of living
 * Improve design/css
