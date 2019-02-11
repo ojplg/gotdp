@@ -6,7 +6,11 @@ class CustomUser(AbstractUser):
     pass
 
 class Character(models.Model):
+    OUTCOMES = (
+        ('L','Lives'),
+        ('D','Dies'))
     name = models.CharField(max_length=500)
+    status = models.CharField(choices=OUTCOMES,max_length=1)
 
     def __str__(self):
         return 'Character: ' + self.name
