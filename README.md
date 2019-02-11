@@ -9,7 +9,6 @@ predictions about which characters will live and which will die.
 
 # TODO
 
-* Navigation for the pages
 * Add all the characters
 * Better selection form
 * Couples selection
