@@ -67,7 +67,6 @@ class Selections(models.Model):
             if (character not in selected_characters):
                 missing.append(character)
         return sorted(missing)
-
             
     def update_picks(self, data):
         for name, prediction in data.items():

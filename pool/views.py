@@ -44,7 +44,7 @@ def select_characters(request):
             selections.update_picks(post_data)
             context = {'user':request.user}
             return redirect('profile')
-    else :
+    else:
         data = {}
         try:
             selections = Selections.objects.get(user=request.user)
