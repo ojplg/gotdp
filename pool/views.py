@@ -94,7 +94,7 @@ def summary(request):
         else: 
             livePercentage[character] = 100 * liveVotes / ( liveVotes + deadVotes )
     context = {
-        'characters':characters,
+        'characters':sorted(characters),
         'liveCount': liveCount,
         'deadCount': deadCount,
         'livePercentage':livePercentage
