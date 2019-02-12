@@ -22,10 +22,10 @@
 
     {% for character in characters %}
         <tr>
-            <td>{{ character.name }}</td>
-            <td>{{ liveCount|get_item:character }}</td>
-            <td>{{ deadCount|get_item:character }}</td>
-            <td>{{ livePercentage|get_item:character }}</td>
+            <td class="character_name">{{ character.name }}</td>
+            <td class="number">{{ liveCount|get_item:character }}</td>
+            <td class="number">{{ deadCount|get_item:character }}</td>
+            <td class="number">{{ livePercentage|get_item:character }}</td>
         </tr>
     {% endfor %}
 
