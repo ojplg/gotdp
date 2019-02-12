@@ -7,6 +7,15 @@ This is my first attempt. Still in a very early stage.
 The application is a Game of Thrones Death Pool. Users can make
 predictions about which characters will live and which will die.
 
+# Technical
+
+* Python 3 
+* Django 2
+* PostgresDB 
+  * DB named "gotdp"
+  * Owner named "gotdp\_user"
+  * Password "gotdp\_password"
+
 # TODO
 
 * Login/Registration: check for errors and display

@@ -12,11 +12,34 @@
 {% csrf_token %}
 
 <table>
-{{ form }}
+
+    <tr>
+        <th></th>
+        <th class="form">Lives</th>
+        <th class="form">Dies</th>
+    </tr>
+
+{% for field in form %}
+    <div class="fieldWrapper">
+        <tr>
+        <td> {{ field.name }}</td>
+        {% for radio in field %}
+            <td class="radio">{{ radio.tag }}</td> 
+        {% endfor %}
+        </tr>
+    </div>
+{% endfor %}
+
+<tr>
+    <td></td>
+    <td>&nbsp;</td>
+    <td></td>
+</tr>
 
 <tr>
     <td></td>
     <td><input type="submit" value="OK"></td>
+    <td></td>
 </tr>
 </table>
 

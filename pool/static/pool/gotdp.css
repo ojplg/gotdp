@@ -69,3 +69,7 @@ td {
 td.number {
     text-align: right;
 }
+
+th.form {
+    text-align: left;
+}
