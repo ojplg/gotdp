@@ -14,21 +14,21 @@
 <div>
 
     <div style="width: 33%; float: left;">
-        <p>Lives</p>
+        <h3>Lives</h3>
         {% for c in lives %}
             {{ c.name }}<br/>
         {% endfor %}
     </div>
 
     <div style="width: 33%; float: left;">
-        <p>Dies</p>
+        <h3>Dies</h3>
         {% for c in dies %}
             {{ c.name }}<br/>
         {% endfor %}
     </div>
 
     <div style="width: 33%; float: left;">
-        <p>No prediction</p>
+        <h3>No prediction</h3>
         {% for c in unselected %}
             {{ c.name }}<br/>
         {% endfor %}
