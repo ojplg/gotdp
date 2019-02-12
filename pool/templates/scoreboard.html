@@ -19,7 +19,7 @@
     {% for email in scores.keys %}
         <tr>
             <td>{{ email }}</td>
-            <td>{{ scores|get_item:email }}</td>
+            <td class="number">{{ scores|get_item:email }}</td>
         </tr>
     {% endfor %}
 
