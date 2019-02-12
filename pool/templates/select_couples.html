@@ -21,13 +21,19 @@
 
 </form>
 
+<button onclick='addRow()' id='new_row_button'/>Add Couple</button>
+
 <script>
+    var lastDisplayedRow = 0;
+    var rows = []    
+    var rowCount = 3;
+
     window.onload=function(){
         console.log('doing loading!');
 
         var table = document.getElementById('couple_form_table');
 
-        for(var idx=0; idx<3; idx++){
+        for(var idx=0; idx<rowCount; idx++){
             var leftTd = document.createElement('td');
             var leftInput = document.getElementById('id_left' + idx);
             leftTd.appendChild(leftInput);
@@ -38,6 +44,12 @@
             row.appendChild(leftTd);
             row.appendChild(rightTd);
             table.appendChild(row);
+
+            rows.push(row);
+
+            if( idx > 0 ){
+                row.style.display = 'none';
+            }
         }
 
         var finalRow = document.createElement('tr');
@@ -50,6 +62,18 @@
         finalRow.appendChild(emptyTd);
         finalRow.appendChild(inputTd);
         table.appendChild(finalRow);
+    };
+
+    var addRow=function(){
+        if( lastDisplayedRow < rowCount ){
+            lastDisplayedRow++;
+            var newRow = rows[lastDisplayedRow];
+            newRow.style.display = 'table-row';
+        }
+        if ( lastDisplayedRow >= rowCount - 1 ) {
+            var newRowButton = document.getElementById('new_row_button'); 
+            newRowButton.style.display='none';
+        }
     };
 </script>
 
