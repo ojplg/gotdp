@@ -19,7 +19,6 @@ predictions about which characters will live and which will die.
 # TODO
 
 * Login/Registration: check for errors and display
-* Better selection form: arrange in a table
 * Couples selection: needs new models and forms
 * Beautify
   * Totals: Explanation, alignment, padding/spacing
