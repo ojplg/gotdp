@@ -11,16 +11,47 @@
 
 {% csrf_token %}
 
-<table>
+<table id="couple_form_table">
 
-{{ form }}
+{% for field in form %}
+    {{ field }}
+{% endfor %}
 
-<tr>
-    <td></td>
-    <td><input type="submit" value="OK"></td>
-</tr>
 </table>
 
 </form>
 
+<script>
+    window.onload=function(){
+        console.log('doing loading!');
+
+        var table = document.getElementById('couple_form_table');
+
+        for(var idx=0; idx<3; idx++){
+            var leftTd = document.createElement('td');
+            var leftInput = document.getElementById('id_left' + idx);
+            leftTd.appendChild(leftInput);
+            var rightTd = document.createElement('td');
+            var rightInput = document.getElementById('id_right' + idx);
+            rightTd.appendChild(rightInput);
+            var row = document.createElement('tr');
+            row.appendChild(leftTd);
+            row.appendChild(rightTd);
+            table.appendChild(row);
+        }
+
+        var finalRow = document.createElement('tr');
+        var emptyTd = document.createElement('td');
+        var inputTd = document.createElement('td');
+        var submitButton = document.createElement('input');
+        submitButton.type='submit';
+        submitButton.value='OK';
+        inputTd.appendChild(submitButton);
+        finalRow.appendChild(emptyTd);
+        finalRow.appendChild(inputTd);
+        table.appendChild(finalRow);
+    };
+</script>
+
 {% endblock %}
+
