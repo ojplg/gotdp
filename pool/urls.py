@@ -12,4 +12,5 @@ urlpatterns = [
     path('summary',views.summary, name='summary'),
     path('scoreboard',views.scoreboard, name='scoreboard'),
     path('rules_disclaimers',views.rules_disclaimers, name='rules_disclaimers'),
+    path('select_couples',views.select_couples, name='select_couples'),
 ]

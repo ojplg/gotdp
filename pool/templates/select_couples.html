@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<h3>Indicate which characters will couple up.</h3>
+
+<form action="/pool/select_couples" method="post">
+
+{% csrf_token %}
+
+<table>
+
+{{ form }}
+
+<tr>
+    <td></td>
+    <td><input type="submit" value="OK"></td>
+</tr>
+</table>
+
+</form>
+
+{% endblock %}

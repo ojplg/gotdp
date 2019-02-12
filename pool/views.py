@@ -6,11 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 from collections import Counter
 
-from .models import Character
-from .models import CustomUser
-from .models import Selection
-from .models import Selections
-from .forms import CharacterSelectsForm, RegisterUserForm
+from .models import Character, CustomUser, Selection, Selections
+from .forms import CharacterSelectsForm, RegisterUserForm, CouplesForm
 
 def index(request):
     return render(request,'index.html',{})
@@ -57,6 +54,19 @@ def select_characters(request):
         form = CharacterSelectsForm(data) 
         context = { 'form': form }
         return render(request,'select_characters.html',context) 
+
+@login_required
+def select_couples(request):
+    if request.method == 'POST':
+        form = CouplesForm(request.POST)
+        if form.is_valid():
+            print(str(form.cleaned_data))
+            return redirect('profile')
+    else:
+        form = CouplesForm()
+        print('form:: ' + str(form))
+        context = { 'form':form }
+        return render(request,'select_couples.html',context)
 
 @login_required
 def profile(request):

@@ -18,6 +18,11 @@ class Character(models.Model):
     def __lt__(self, other):
         return self.name.__lt__(other.name)
 
+    def allNames():
+        cs = Character.objects.all()
+        ns = map(lambda c: c.name, cs)
+        return list(ns)
+
 class Selections(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
@@ -122,4 +127,11 @@ class Selection(models.Model):
             return 'Dies'
         raise Exception("Unrecognized code " + code)
 
+class Couple(models.Model):
+    selections = models.ForeignKey(Selections,on_delete=models.CASCADE)
+    left = models.ForeignKey(Character,on_delete=models.CASCADE,related_name='left_character')
+    right = models.ForeignKey(Character,on_delete=models.CASCADE,related_name='right_character')
+
+    def __str__(self):
+        return "Couple: " + str(self.selections) + ": " + left.name + " & " + right.name
        
