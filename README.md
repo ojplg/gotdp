@@ -9,10 +9,13 @@ predictions about which characters will live and which will die.
 
 # TODO
 
-* Add all the characters
-* Better selection form
-* Couples selection
-* Improve design/css
+* Login/Registration: check for errors and display
+* Better selection form: arrange in a table
+* Couples selection: needs new models and forms
+* Beautify
+  * Totals: Explanation, alignment, padding/spacing
+  * Scoreboard: Explanation, alignment, padding/spacing
+  * Rules: better headers
 
 # Characters
 

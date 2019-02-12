@@ -14,6 +14,8 @@ div.content {
 
 div.hometitle {
     float: left;
+    font-size: 48px;
+    font-weight: bold;
 }
 
 div.homeright {
@@ -24,7 +26,7 @@ div.homeright {
 
 div.homebottom {
     position: absolute;
-    bottom: 25px;
+    bottom: 15px;
     color: pink;
 }
 
