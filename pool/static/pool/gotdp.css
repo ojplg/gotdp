@@ -31,12 +31,14 @@ div.homebottom {
 }
 
 div.navigation_items {
+    font-size: 16px;
 }
 
 div.navigation_login {
     position: absolute;
     right: 8px;
     top: 0;
+    font-size: 16px;
 }
 
 div.navigation_end {
@@ -59,11 +61,13 @@ span.emphasize {
 th {
     padding-left: 5px;
     padding-right: 5px;
+    font-size: 20px;
 }
 
 td {
     padding-left: 5px;
     padding-right: 5px;
+    font-size: 20px;
 }
 
 td.number {
@@ -72,4 +76,20 @@ td.number {
 
 th.form {
     text-align: left;
+}
+
+div.outlined {
+    border: none;
+    border-color: black;
+    border-width: thin;
+}
+
+div.outlined_header {
+    font-size: 28;
+    text-decoration: underline;
+}
+
+div.list_heading {
+    font-size:24px;
+    text-decoration: underline;
 }

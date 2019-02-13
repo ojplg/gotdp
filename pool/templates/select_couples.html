@@ -5,7 +5,7 @@
 {% block content %}
 
 
-<h3>Indicate which characters will couple up.</h3>
+<h3>Choose which pairs of characters will live happily ever after.</h3>
 
 <form action="/pool/select_couples" method="post">
 
@@ -21,7 +21,7 @@
 
 </form>
 
-<button onclick='addRow()' id='new_row_button'/>Add Couple</button>
+<button onclick='addRow()' id='new_row_button'/>Expand Form</button>
 
 <script>
     var lastDisplayedRow = 0;
@@ -37,11 +37,14 @@
             var leftTd = document.createElement('td');
             var leftInput = document.getElementById('id_left' + idx);
             leftTd.appendChild(leftInput);
+            var centerTd = document.createElement('td');
+            centerTd.innerHTML = '&nbsp;with&nbsp;';
             var rightTd = document.createElement('td');
             var rightInput = document.getElementById('id_right' + idx);
             rightTd.appendChild(rightInput);
             var row = document.createElement('tr');
             row.appendChild(leftTd);
+            row.appendChild(centerTd);
             row.appendChild(rightTd);
             table.appendChild(row);
 
@@ -57,12 +60,14 @@
 
         var finalRow = document.createElement('tr');
         var emptyTd = document.createElement('td');
+        var empty2Td = document.createElement('td');
         var inputTd = document.createElement('td');
         var submitButton = document.createElement('input');
         submitButton.type='submit';
         submitButton.value='OK';
         inputTd.appendChild(submitButton);
         finalRow.appendChild(emptyTd);
+        finalRow.appendChild(empty2Td);
         finalRow.appendChild(inputTd);
         table.appendChild(finalRow);
     };

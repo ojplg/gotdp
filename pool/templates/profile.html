@@ -5,44 +5,55 @@
 {% block content %}
 
 
-<h4>Picks for {{ user.email }}</h4>
+<h3>{{ user.email }} Predictions</h3>
 
-<a href="{% url 'select_characters' %}">Update</a>
+<hr/>
 
-<br/>
+<div class='outlined'>
+
+<div class='outlined_header'>Mortality Predictions</div>
 
 <div>
 
     <div style="width: 33%; float: left;">
-        <h3>Lives</h3>
+        <div class='list_heading'>Lives</div>
         {% for c in lives %}
             {{ c.name }}<br/>
         {% endfor %}
     </div>
 
     <div style="width: 33%; float: left;">
-        <h3>Dies</h3>
+        <div class='list_heading'>Dies</div>
         {% for c in dies %}
             {{ c.name }}<br/>
         {% endfor %}
     </div>
 
     <div style="width: 33%; float: left;">
-        <h3>No prediction</h3>
+        <div class='list_heading'>No Prediction</div>
         {% for c in unselected %}
             {{ c.name }}<br/>
         {% endfor %}
     </div>
 
-</div>
+    <div style="clear: both"></div>
 
-<div style="clear: both"></div>
+</div>
 
 <br/>
 
-<a href="{% url 'select_couples' %}">Couples</a>
+<a href="{% url 'select_characters' %}">Update</a>
 
-<div>
+</div>
+
+
+<br/>
+
+<hr/>
+
+<div class='outlined'>
+
+<div class='outlined_header'>Romantic Predictions</div>
 
 <table>
 {% for couple in couples %}
@@ -55,6 +66,10 @@
 
 {% endfor %}
 </table>
+
+<br/>
+
+<a href="{% url 'select_couples' %}">Update</a>
 
 </div>
 

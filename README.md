@@ -18,10 +18,7 @@ predictions about which characters will live and which will die.
 
 # TODO
 
-* Beautify
-  * Totals: Explanation, alignment, padding/spacing
-  * Scoreboard: Explanation, alignment, padding/spacing
-  * Rules: better headers
+* Implement couple scoring
 
 # Characters
 
