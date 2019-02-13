@@ -112,17 +112,6 @@ class Selections(models.Model):
             dictionary['right' + str(idx)] = couple.right.name
         return dictionary            
 
-    def compute_score(self,characters):
-        score = 0
-        for selection in self.picks():
-            for character in characters:
-                if( character == selection.character ):
-                    if( selection.outcome == character.status ):
-                        score+=1
-                    else:
-                        score-=1
-        return score
-
     def update_couples(self, data):
         submitted_couples = []
         for i in range(10):
@@ -130,10 +119,11 @@ class Selections(models.Model):
             left_character = data.get('left' + str(i))
             right_character = data.get('right' + str(i))
             if ( left_character and right_character ):
+                one = Character.find_by_name(left_character)
+                two = Character.find_by_name(right_character)
                 couple = Couple()
-                couple.left = Character.find_by_name(left_character)
-                couple.right = Character.find_by_name(right_character)
                 couple.selections = self
+                couple.set_characters(one, two)
                 print("adding " + str(couple))
                 submitted_couples.append(couple)
         saved_couples = self.couples()
@@ -173,6 +163,12 @@ class Couple(models.Model):
     selections = models.ForeignKey(Selections,on_delete=models.CASCADE)
     left = models.ForeignKey(Character,on_delete=models.CASCADE,related_name='left_character')
     right = models.ForeignKey(Character,on_delete=models.CASCADE,related_name='right_character')
+
+    def set_characters(self, one, two):
+        characters = [one, two]
+        characters.sort()
+        self.left = characters[0]
+        self.right = characters[1]
 
     def __str__(self):
         return "Couple: " + str(self.selections) + ": " + str(self.left) + " & " + str(self.right)

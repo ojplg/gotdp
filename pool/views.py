@@ -8,6 +8,7 @@ from collections import Counter
 
 from .models import Character, CustomUser, Selection, Selections
 from .forms import CharacterSelectsForm, RegisterUserForm, CouplesForm
+from .scoring import calculate_score
 
 def index(request):
     return render(request,'index.html',{})
@@ -63,11 +64,16 @@ def select_couples(request):
 @login_required
 def profile(request):
     selections = Selections.load_by_user(request.user)
+    characters = Character.objects.all()
+    score = calculate_score(selections, characters)
     context = {'user':request.user, 
                'lives':selections.picks_to_live(), 
                'dies':selections.picks_to_die(),
                'couples':selections.couples(),
-               'unselected': selections.unselected()}
+               'unselected': selections.unselected(),
+               'mortality_score':score[0],
+               'romance_score':score[1],
+               'total_score':score[2]}
     return render(request,'profile.html',context)
 
 def do_logout(request):
@@ -109,7 +115,7 @@ def scoreboard(request):
     characters = Character.objects.all()
     scores = {}
     for selections in allSelections:
-        scores[selections.user.email] = selections.compute_score(characters)
+        scores[selections.user.email] = calculate_score(selections,characters)
     context = { 'scores':scores }
     return render(request,'scoreboard.html',context)
 

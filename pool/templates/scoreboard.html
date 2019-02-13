@@ -15,15 +15,21 @@ make liaisons.</p>
     <thead>
         <tr>
             <th>Competitor</th>
-            <th>Score</th>
+            <th>Mortality Score</th>
+            <th>Romance Score</th>
+            <th>Total Score</th>
         </tr> 
     </thead>
 
     {% for email in scores.keys %}
+        {% with score=scores|get_item:email %}
         <tr>
             <td>{{ email }}</td>
-            <td class="number">{{ scores|get_item:email }}</td>
+            {% for s in score %}
+                <td class="number">{{ s }}</td>
+            {% endfor %}
         </tr>
+        {% endwith %}
     {% endfor %}
 
 </table>

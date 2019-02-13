@@ -7,11 +7,15 @@
 
 <h3>{{ user.email }} Predictions</h3>
 
+<h4>Total score: {{ total_score }}</h4>
+
 <hr/>
 
 <div class='outlined'>
 
 <div class='outlined_header'>Mortality Predictions</div>
+
+<p>Score: {{ mortality_score }}</p>
 
 <div>
 
@@ -54,6 +58,8 @@
 <div class='outlined'>
 
 <div class='outlined_header'>Romantic Predictions</div>
+
+<p>Score: {{ romance_score }}</p>
 
 <table>
 {% for couple in couples %}
