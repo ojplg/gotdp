@@ -19,6 +19,7 @@ predictions about which characters will live and which will die.
 # TODO
 
 * Implement couple scoring
+* Show couples in summary
 
 # Characters
 
