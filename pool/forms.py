@@ -16,6 +16,7 @@ class RegisterUserForm(forms.Form):
 class CouplesForm(forms.Form):
     def __init__(self, *args, **kwargs):
         CHOICES = [('','')] + list(map ( lambda n: (n,n), Character.allNames() ))
+        CHOICES.sort()
         super(CouplesForm, self).__init__(*args, **kwargs)
         for index in range(10):
             leftIndex = 'left' + str(index)
