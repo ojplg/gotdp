@@ -23,11 +23,15 @@ class Character(models.Model):
         ns = map(lambda c: c.name, cs)
         return list(ns)
 
+    def find_by_name(n):
+        print ("Searching for " + n)
+        return Character.objects.get(name=n)
+
 class Selections(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Selections: " + str(user) + " are " + str(picks)    
+        return "Selections: " + str(self.user) 
     
     def picks(self):
         return Selection.objects.filter(selections=self)
@@ -94,6 +98,10 @@ class Selections(models.Model):
             selections.user = user
             return selections
 
+    def couples(self):
+        print ("loading couples for " + str(self))
+        return Couple.objects.filter(selections=self)
+
     def compute_score(self,characters):
         score = 0
         for selection in self.picks():
@@ -104,6 +112,27 @@ class Selections(models.Model):
                     else:
                         score-=1
         return score
+
+    def update_couples(self, data):
+        submitted_couples = []
+        for i in range(10):
+            print ("updating couple " + str(i))
+            left_character = data.get('left' + str(i))
+            right_character = data.get('right' + str(i))
+            if ( left_character and right_character ):
+                couple = Couple()
+                couple.selection = self
+                couple.left = Character.find_by_name(left_character)
+                couple.right = Character.find_by_name(right_character)
+        saved_couples = self.couples()
+        couples_to_delete = []
+        for c in submitted_couples:
+            if not saved_couples.contains(c):
+                c.save()
+        for c in saved_couples:
+            if not submitted_couples.contains(c):
+                c.delete()
+                
 
 class Selection(models.Model):
     OUTCOMES = (

@@ -61,6 +61,9 @@ def select_couples(request):
         form = CouplesForm(request.POST)
         if form.is_valid():
             print(str(form.cleaned_data))
+            selections = Selections.load_by_user(request.user)
+            print(str(selections))
+            selections.update_couples(form.cleaned_data)
             return redirect('profile')
     else:
         form = CouplesForm()
