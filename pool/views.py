@@ -8,7 +8,7 @@ from collections import Counter
 
 from .models import Character, CustomUser, Selection, Selections
 from .forms import CharacterSelectsForm, RegisterUserForm, CouplesForm
-from .scoring import calculate_score
+from .scoring import calculate_score, character_sums, calculate_couple_counts
 
 def index(request):
     return render(request,'index.html',{})
@@ -82,31 +82,14 @@ def do_logout(request):
 
 def summary(request):
     characters = Character.objects.all()
-    allSelections = Selection.objects.all()
-    deadCount = Counter()
-    liveCount = Counter()
-    for character in characters:
-        deadCount[character] = 0
-        liveCount[character] = 0
-    for selection in allSelections:
-        if selection.outcome == 'L' :
-            liveCount[selection.character] += 1
-        if selection.outcome == 'D' :
-            deadCount[selection.character] += 1
-    livePercentage = {}
-    for character in characters:
-        liveVotes = liveCount[character]
-        deadVotes = deadCount[character]
-        total = liveVotes + deadVotes
-        if total == 0:
-            livePercentage[character] = 0
-        else: 
-            livePercentage[character] = 100 * liveVotes / ( liveVotes + deadVotes )
+    summary_counts = character_sums(characters)
+    couple_counts = calculate_couple_counts()
     context = {
         'characters':sorted(characters),
-        'liveCount': liveCount,
-        'deadCount': deadCount,
-        'livePercentage':livePercentage
+        'liveCount': summary_counts[0],
+        'deadCount': summary_counts[1],
+        'livePercentage': summary_counts[2],
+        'coupleCounts':couple_counts
     }
     return render(request,'summary.html',context)
 

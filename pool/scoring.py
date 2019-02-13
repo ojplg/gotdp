@@ -1,4 +1,7 @@
 
+from collections import Counter
+from .models import Character, Selection, Selections, Couple
+
 COUPLES = [ ]
 
 def compute_mortality_score(selections,characters):
@@ -33,3 +36,35 @@ def calculate_score(selections, characters):
     romance_score = compute_romance_score(selections)
     return (mortality_score, romance_score, mortality_score + romance_score)
 
+def character_sums(characters):
+    allSelections = Selection.objects.all()
+    deadCount = Counter()
+    liveCount = Counter()
+    for character in characters:
+        deadCount[character] = 0
+        liveCount[character] = 0
+    for selection in allSelections:
+        if selection.outcome == 'L' :
+            liveCount[selection.character] += 1
+        if selection.outcome == 'D' :
+            deadCount[selection.character] += 1
+    livePercentage = {}
+    for character in characters:
+        liveVotes = liveCount[character]
+        deadVotes = deadCount[character]
+        total = liveVotes + deadVotes
+        if total == 0:
+            livePercentage[character] = 0
+        else: 
+            livePercentage[character] = round(100 * liveVotes / ( liveVotes + deadVotes ), 1)
+    return (deadCount, liveCount, livePercentage)
+ 
+def calculate_couple_counts():
+    allCouples = Couple.objects.all()
+    coupleCounts = Counter()
+    for couple in allCouples:
+        key = (couple.left.name, couple.right.name)
+        coupleCounts[key] += 1
+    return coupleCounts
+        
+        

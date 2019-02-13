@@ -7,16 +7,16 @@
 
 <h3>Totals</h3>
 
-<p>The number of people predicting whether each character will live or die.</p>
+<h5>The number of people predicting whether each character will live or die.</h5>
 
 <table>
 
     <thead>
         <tr>
             <th></th>
-            <th>Lives</th>
-            <th>Dies</th>
-            <th>Percent Chance of Survival</th>
+            <th>&nbsp;Live</th>
+            <th>&nbsp;Die</th>
+            <th>&nbsp;Percent Chance of Survival</th>
         </tr> 
     </thead>
 
@@ -26,6 +26,31 @@
             <td class="number">{{ liveCount|get_item:character }}</td>
             <td class="number">{{ deadCount|get_item:character }}</td>
             <td class="number">{{ livePercentage|get_item:character }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+<h5>Predicted couple counts.</h5>
+
+<table>
+ 
+    <thead>
+        <tr>
+            <th colspan="3">Couple</th>
+            <th></th>
+            <th>Count</th>
+        </tr> 
+    </thead>
+
+   
+    {% for couple in coupleCounts %}
+        <tr>
+            <td class="character_name">{{ couple.0 }}</td>
+            <td>&nbsp;and&nbsp;</td>
+            <td class="character_name">{{ couple.1 }}</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td class="number">{{ coupleCounts|get_item:couple }}</td>
         </tr>
     {% endfor %}
 

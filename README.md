@@ -18,7 +18,7 @@ predictions about which characters will live and which will die.
 
 # TODO
 
-* Show couples in summary
+* ?
 
 # Characters
 
