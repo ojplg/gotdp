@@ -17,7 +17,7 @@ class CouplesForm(forms.Form):
     def __init__(self, *args, **kwargs):
         CHOICES = [('','')] + list(map ( lambda n: (n,n), Character.allNames() ))
         super(CouplesForm, self).__init__(*args, **kwargs)
-        for index in range(3):
+        for index in range(10):
             leftIndex = 'left' + str(index)
             rightIndex = 'right' + str(index)
             self.fields[leftIndex] = forms.ChoiceField(choices=CHOICES, required=False)
