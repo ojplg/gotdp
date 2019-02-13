@@ -25,7 +25,9 @@ class Character(models.Model):
 
     def find_by_name(n):
         print ("Searching for " + n)
-        return Character.objects.get(name=n)
+        c = Character.objects.get(name=n)
+        print ("Found " + str(c))
+        return c
 
 class Selections(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -102,6 +104,13 @@ class Selections(models.Model):
         print ("loading couples for " + str(self))
         return Couple.objects.filter(selections=self)
 
+    def couples_dictionary(self):
+        dictionary = {}
+        for idx, couple in enumerate(self.couples()):
+            dictionary['left' + str(idx)] = couple.left.name
+            dictionary['right' + str(idx)] = couple.right.name
+        return dictionary            
+
     def compute_score(self,characters):
         score = 0
         for selection in self.picks():
@@ -121,16 +130,20 @@ class Selections(models.Model):
             right_character = data.get('right' + str(i))
             if ( left_character and right_character ):
                 couple = Couple()
-                couple.selection = self
                 couple.left = Character.find_by_name(left_character)
                 couple.right = Character.find_by_name(right_character)
+                couple.selections = self
+                print("adding " + str(couple))
+                submitted_couples.append(couple)
         saved_couples = self.couples()
         couples_to_delete = []
         for c in submitted_couples:
-            if not saved_couples.contains(c):
+            print("checking " + str(c))
+            if c not in list(saved_couples):
+                print("saving " + str(c))
                 c.save()
         for c in saved_couples:
-            if not submitted_couples.contains(c):
+            if c not in (list(submitted_couples)):
                 c.delete()
                 
 
@@ -161,5 +174,5 @@ class Couple(models.Model):
     right = models.ForeignKey(Character,on_delete=models.CASCADE,related_name='right_character')
 
     def __str__(self):
-        return "Couple: " + str(self.selections) + ": " + left.name + " & " + right.name
+        return "Couple: " + str(self.selections) + ": " + str(self.left) + " & " + str(self.right)
        

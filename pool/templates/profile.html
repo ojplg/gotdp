@@ -44,6 +44,18 @@
 
 <div>
 
+<table>
+{% for couple in couples %}
+
+    <tr>
+        <td> {{ couple.left.name }} </td>
+        <td>and</td>
+        <td> {{ couple.right.name }} </td>
+    </tr>
+
+{% endfor %}
+</table>
+
 </div>
 
 {% endblock %}

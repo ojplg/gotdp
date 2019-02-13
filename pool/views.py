@@ -66,8 +66,9 @@ def select_couples(request):
             selections.update_couples(form.cleaned_data)
             return redirect('profile')
     else:
-        form = CouplesForm()
-        print('form:: ' + str(form))
+        selections = Selections.load_by_user(request.user)
+        data = selections.couples_dictionary()
+        form = CouplesForm(data)
         context = { 'form':form }
         return render(request,'select_couples.html',context)
 
@@ -77,6 +78,7 @@ def profile(request):
     context = {'user':request.user, 
                'lives':selections.picks_to_live(), 
                'dies':selections.picks_to_die(),
+               'couples':selections.couples(),
                'unselected': selections.unselected()}
     return render(request,'profile.html',context)
 
