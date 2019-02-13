@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -17,13 +17,11 @@ def register_user(request):
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             print("registering!")
-            print( form.cleaned_data )
             user = CustomUser.objects.create_user(form.cleaned_data['email'],form.cleaned_data['email'],form.cleaned_data['password'])
-            print("user!")
-            print(user)
             user.save()
-        return HttpResponseRedirect('select_characters')
-    else :
+            login(request, user)
+            return redirect('profile')
+    else:
         form = RegisterUserForm()
         context = { 'form':form }
         return render(request,'register_user.html',context)
