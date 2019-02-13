@@ -33,24 +33,14 @@ def select_characters(request):
     if request.method == 'POST':
         form = CharacterSelectsForm(request.POST)
         if form.is_valid():
-            selections = Selections()
-            try:
-                selections = Selections.objects.get(user=request.user)
-            except Selections.DoesNotExist:
-                print("No selections yet")
-                selections.user = request.user
-                selections.save()
+            selections = Selections.load_by_user(request.user)
             post_data = form.cleaned_data
             selections.update_picks(post_data)
             context = {'user':request.user}
             return redirect('profile')
     else:
-        data = {}
-        try:
-            selections = Selections.objects.get(user=request.user)
-            data = selections.picks_dictionary()
-        except Selections.DoesNotExist:
-            print("User " + str(request.user) + " has no picks")
+        selections = Selections.load_by_user(request.user)
+        data = selections.picks_dictionary()
         form = CharacterSelectsForm(data) 
         context = { 'form': form }
         return render(request,'select_characters.html',context) 

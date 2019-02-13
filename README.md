@@ -33,7 +33,7 @@ predictions about which characters will live and which will die.
 * Sansa Stark
 * Jon Snow
 * Tyrion Lannister
-* Jamie Lannister
+* Jaime Lannister
 * Cersei Lannister
 * Gilly
 * Samwell Tarly

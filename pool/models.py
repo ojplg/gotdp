@@ -95,9 +95,10 @@ class Selections(models.Model):
     def load_by_user(user):
         try:
             return Selections.objects.get(user=user)
-        except DoesNotExist:
+        except Selections.DoesNotExist:
             selections = Selections()
             selections.user = user
+            selections.save()
             return selections
 
     def couples(self):
