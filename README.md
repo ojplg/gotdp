@@ -2,10 +2,10 @@
 
 Learning some Python. Learning some Django.
 
-This is my first attempt. Still in a very early stage.
-
 The application is a Game of Thrones Death Pool. Users can make
 predictions about which characters will live and which will die.
+
+http://hrorm.org/pool
 
 # Technical
 
@@ -18,7 +18,7 @@ predictions about which characters will live and which will die.
 
 # TODO
 
-* ?
+* Password recovery. But, really, why?
 
 # Characters
 
