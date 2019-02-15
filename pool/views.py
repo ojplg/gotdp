@@ -18,7 +18,7 @@ def register_user(request):
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             print("registering!")
-            user = CustomUser.objects.create_user(form.cleaned_data['email'],form.cleaned_data['email'],form.cleaned_data['password'])
+            user = CustomUser.objects.create_user(form.cleaned_data['username'],form.cleaned_data['email'],form.cleaned_data['password'])
             user.save()
             login(request, user)
             return redirect('profile')
@@ -98,7 +98,7 @@ def scoreboard(request):
     characters = Character.objects.all()
     scores = {}
     for selections in allSelections:
-        scores[selections.user.email] = calculate_score(selections,characters)
+        scores[selections.user.username] = calculate_score(selections,characters)
     context = { 'scores':scores }
     return render(request,'scoreboard.html',context)
 

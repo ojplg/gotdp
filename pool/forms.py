@@ -10,6 +10,7 @@ class CharacterSelectsForm(forms.Form):
             self.fields[c.name] = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=False, label=c.name)
 
 class RegisterUserForm(forms.Form):
+    username = forms.CharField()
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 

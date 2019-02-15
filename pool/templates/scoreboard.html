@@ -21,10 +21,10 @@ make liaisons.</p>
         </tr> 
     </thead>
 
-    {% for email in scores.keys %}
-        {% with score=scores|get_item:email %}
+    {% for name in scores.keys %}
+        {% with score=scores|get_item:name %}
         <tr>
-            <td>{{ email }}</td>
+            <td>{{ name }}</td>
             {% for s in score %}
                 <td class="number">{{ s }}</td>
             {% endfor %}
