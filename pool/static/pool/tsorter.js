@@ -204,6 +204,20 @@ var tsorter = (function()
             }
         },
 
+        readHeaders: function( table ){
+            var ths = table.getElementsByTagName("th");
+            var headers = [];
+            var index = 0;
+            for( var i = 0; i < ths.length; i++ ){
+                var th = ths[i];
+                for( var j = 0; j<th.colSpan; j++ ){
+                    headers[index] = th;
+                    index++;
+                }
+            }
+            return headers;
+        },
+
         init: function( table, initialSortedColumn, customDataAccessors ){
             var that = this,
                 i;
@@ -213,7 +227,7 @@ var tsorter = (function()
             }
 
             that.table = table;
-            that.ths   = table.getElementsByTagName("th");
+            that.ths   = that.readHeaders(table);
             that.tbody = table.tBodies[0];
             that.trs   = that.tbody.getElementsByTagName("tr");
             that.prevCol = ( initialSortedColumn && initialSortedColumn > 0 ) ? initialSortedColumn : -1;
