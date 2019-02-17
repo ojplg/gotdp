@@ -57,7 +57,7 @@ def character_sums(characters):
             livePercentage[character] = 0
         else: 
             livePercentage[character] = round(100 * liveVotes / ( liveVotes + deadVotes ), 1)
-    return (deadCount, liveCount, livePercentage)
+    return (liveCount, deadCount, livePercentage)
  
 def calculate_couple_counts():
     allCouples = Couple.objects.all()

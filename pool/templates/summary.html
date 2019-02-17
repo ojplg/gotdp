@@ -9,7 +9,7 @@
 
 <h5>The number of people predicting whether each character will live or die.</h5>
 
-<table>
+<table id='summary_table'>
 
     <thead>
         <tr>
@@ -33,7 +33,7 @@
 
 <h5>Predicted couple counts.</h5>
 
-<table>
+<table id="couple_table">
  
     <thead>
         <tr>
@@ -55,5 +55,14 @@
     {% endfor %}
 
 </table>
+
+<script>
+function init() {
+    var sorter1 = tsorter.create('summary_table');
+    var sorter2 = tsorter.create('couple_table');
+}
+    
+window.onload = init;
+</script>
 
 {% endblock %}

@@ -10,7 +10,7 @@
 <p>Scores will be updated as episodes are released and characters are killed off or
 make liaisons.</p>
 
-<table>
+<table id='scores_table'>
 
     <thead>
         <tr>
@@ -33,5 +33,13 @@ make liaisons.</p>
     {% endfor %}
 
 </table>
+
+<script>
+function init() {
+    var sorter1 = tsorter.create('scores_table');
+}
+    
+window.onload = init;
+</script>
 
 {% endblock %}
