@@ -63,7 +63,8 @@ var tsorter = (function()
             //  IE6,7,8 don't have it.
 
             // set the data retrieval function for this column 
-            that.column = th.cellIndex;
+            that.column = that.getHeaderIndex( that.table, th );
+
             that.get = that.getAccessor( th.getAttribute('data-tsorter') );
 
             if( that.prevCol === that.column )
@@ -201,6 +202,18 @@ var tsorter = (function()
             } else {
                 that.quicksort(j+1, hi);
                 that.quicksort(lo, j);
+            }
+        },
+
+        getHeaderIndex: function( table, th ){
+            var ths = table.getElementsByTagName("th");
+            var index = 0;
+            for( var i = 0 ; i < ths.length ; i++ ){
+                var headerCell = ths[i];
+                if( headerCell.innerHTML === th.innerHTML ){
+                    return index;
+                }
+                index += headerCell.colSpan;
             }
         },
 

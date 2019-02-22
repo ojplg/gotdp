@@ -20,6 +20,7 @@
         </tr> 
     </thead>
 
+    <tbody>
     {% for character in characters %}
         <tr>
             <td class="character_name">{{ character.name }}</td>
@@ -29,6 +30,7 @@
         </tr>
     {% endfor %}
 
+    </tbody>
 </table>
 
 <h5>Predicted couple counts.</h5>
@@ -44,6 +46,7 @@
     </thead>
 
    
+    <tbody>
     {% for couple in coupleCounts %}
         <tr>
             <td class="character_name">{{ couple.0 }}</td>
@@ -53,35 +56,9 @@
             <td class="number">{{ coupleCounts|get_item:couple }}</td>
         </tr>
     {% endfor %}
-
-</table>
-
-{% comment %}
-<table id="smurf_table">
-    <thead>
-        <tr>
-            <th>Letter</th>
-            <th data-tsorter="numeric">Number</th>
-        </tr>
-    </th>
-
-    <tbody>
-    <tr>
-        <td>A</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>B</td>
-        <td>2</td>
-    </tr>
-
-    <tr>
-        <td>C</td>
-        <td>1</td>
-    </tr>
     </tbody>
+
 </table>
-{% endcomment %}
 
 <script>
 function init() {
