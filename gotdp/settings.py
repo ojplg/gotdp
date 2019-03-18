@@ -126,3 +126,40 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/pool/profile'
 
 AUTH_USER_MODEL = 'pool.CustomUser'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} {levelname} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'django': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': './django.log',
+            'formatter': 'verbose',
+        },
+        'pool': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './pool.log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['django'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'pool': {
+            'handlers': ['pool'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

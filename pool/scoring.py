@@ -1,6 +1,9 @@
 
 from collections import Counter
 from .models import Character, Selection, Selections, Couple
+import logging
+
+logger = logging.getLogger('pool')
 
 COUPLES = [ ]
 
@@ -17,7 +20,7 @@ def compute_mortality_score(selections,characters):
 
 def is_correct_couple(couple):
     for c in COUPLES:
-        print("checking " + c[0] + " and " + c[1] + " with " + str(couple))
+        logging.debug("checking " + c[0] + " and " + c[1] + " with " + str(couple))
         if ( c[0] == couple.left.name and c[1] == couple.right.name ):
             return True
     return False

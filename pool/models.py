@@ -1,6 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
+import logging
+
+logger = logging.getLogger('pool')
 
 class CustomUser(AbstractUser):
     pass
@@ -24,9 +27,7 @@ class Character(models.Model):
         return list(ns)
 
     def find_by_name(n):
-        print ("Searching for " + n)
         c = Character.objects.get(name=n)
-        print ("Found " + str(c))
         return c
 
 class Selections(models.Model):
@@ -81,7 +82,7 @@ class Selections(models.Model):
                 if ( pick.character.name == name ):
                     pick.outcome = prediction[0]
                     new_name = False
-                    print("Resetting value for " + name + " to " + prediction)
+                    logger.debug("Resetting value for " + name + " to " + prediction)
                     pick.save()
             if ( new_name ):
                 if( prediction ):
@@ -102,7 +103,7 @@ class Selections(models.Model):
             return selections
 
     def couples(self):
-        print ("loading couples for " + str(self))
+        logger.debug("loading couples for " + str(self))
         return Couple.objects.filter(selections=self)
 
     def couples_dictionary(self):
@@ -115,7 +116,7 @@ class Selections(models.Model):
     def update_couples(self, data):
         submitted_couples = []
         for i in range(10):
-            print ("updating couple " + str(i))
+            logger.debug("updating couple " + str(i))
             left_character = data.get('left' + str(i))
             right_character = data.get('right' + str(i))
             if ( left_character and right_character ):
@@ -124,14 +125,11 @@ class Selections(models.Model):
                 couple = Couple()
                 couple.selections = self
                 couple.set_characters(one, two)
-                print("adding " + str(couple))
                 submitted_couples.append(couple)
         saved_couples = self.couples()
         couples_to_delete = []
         for c in submitted_couples:
-            print("checking " + str(c))
             if c not in list(saved_couples):
-                print("saving " + str(c))
                 c.save()
         for c in saved_couples:
             if c not in (list(submitted_couples)):

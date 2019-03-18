@@ -10,6 +10,10 @@ from .models import Character, CustomUser, Selection, Selections
 from .forms import CharacterSelectsForm, RegisterUserForm, CouplesForm
 from .scoring import calculate_score, character_sums, calculate_couple_counts
 
+import logging
+
+logger = logging.getLogger('pool')
+
 def index(request):
     return render(request,'index.html',{})
 
@@ -17,7 +21,7 @@ def register_user(request):
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
         if form.is_valid():
-            print("registering!")
+            logging.info("registering!")
             user = CustomUser.objects.create_user(form.cleaned_data['username'],form.cleaned_data['email'],form.cleaned_data['password'])
             user.save()
             login(request, user)
@@ -49,9 +53,9 @@ def select_couples(request):
     if request.method == 'POST':
         form = CouplesForm(request.POST)
         if form.is_valid():
-            print(str(form.cleaned_data))
+            logging.debug(str(form.cleaned_data))
             selections = Selections.load_by_user(request.user)
-            print(str(selections))
+            logging.debug(str(selections))
             selections.update_couples(form.cleaned_data)
             return redirect('profile')
     else:
