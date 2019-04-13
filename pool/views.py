@@ -33,15 +33,15 @@ def register_user(request):
 
 @login_required
 def select_characters(request):
-    if request.method == 'POST':
-        form = CharacterSelectsForm(request.POST)
-        if form.is_valid():
-            selections = Selections.load_by_user(request.user)
-            post_data = form.cleaned_data
-            selections.update_picks(post_data)
-            context = {'user':request.user}
-            return redirect('profile')
-    else:
+#    if request.method == 'POST':
+#        form = CharacterSelectsForm(request.POST)
+#        if form.is_valid():
+#            selections = Selections.load_by_user(request.user)
+#            post_data = form.cleaned_data
+#            selections.update_picks(post_data)
+#            context = {'user':request.user}
+#            return redirect('profile')
+#    else:
         selections = Selections.load_by_user(request.user)
         data = selections.picks_dictionary()
         form = CharacterSelectsForm(data) 
@@ -50,15 +50,15 @@ def select_characters(request):
 
 @login_required
 def select_couples(request):
-    if request.method == 'POST':
-        form = CouplesForm(request.POST)
-        if form.is_valid():
-            logging.debug(str(form.cleaned_data))
-            selections = Selections.load_by_user(request.user)
-            logging.debug(str(selections))
-            selections.update_couples(form.cleaned_data)
-            return redirect('profile')
-    else:
+#    if request.method == 'POST':
+#        form = CouplesForm(request.POST)
+#        if form.is_valid():
+#            logging.debug(str(form.cleaned_data))
+#            selections = Selections.load_by_user(request.user)
+#            logging.debug(str(selections))
+#            selections.update_couples(form.cleaned_data)
+#            return redirect('profile')
+#    else:
         selections = Selections.load_by_user(request.user)
         data = selections.couples_dictionary()
         form = CouplesForm(data)
