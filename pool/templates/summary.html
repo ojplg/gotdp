@@ -17,6 +17,7 @@
             <th data-tsorter="numeric">&nbsp;Live</th>
             <th data-tsorter="numeric">&nbsp;Die</th>
             <th data-tsorter="numeric">&nbsp;Percent Chance of Survival</th>
+            <th>&nbsp;Survey Says</th>
         </tr> 
     </thead>
 
@@ -27,6 +28,9 @@
             <td class="number">{{ liveCount|get_item:character }}</td>
             <td class="number">{{ deadCount|get_item:character }}</td>
             <td class="number">{{ livePercentage|get_item:character }}</td>
+            <td class="">
+                {% if character.status == 'D' %} DEAD {% endif %}
+            </td>
         </tr>
     {% endfor %}
 
