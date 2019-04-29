@@ -78,6 +78,11 @@ th.form {
     text-align: left;
 }
 
+td.status {
+    text-align: center;
+    color: red;
+}
+
 div.outlined {
     border: none;
     border-color: black;

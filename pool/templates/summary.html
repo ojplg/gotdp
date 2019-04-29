@@ -28,7 +28,7 @@
             <td class="number">{{ liveCount|get_item:character }}</td>
             <td class="number">{{ deadCount|get_item:character }}</td>
             <td class="number">{{ livePercentage|get_item:character }}</td>
-            <td class="">
+            <td class="status">
                 {% if character.status == 'D' %} DEAD {% endif %}
             </td>
         </tr>
